@@ -1,5 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:NewWPF.UI.Converters" 
+                    xmlns:paginationConverters="clr-namespace:NewWPF.UI.Converters.Pagination">
+
+    <paginationConverters:PaginationPrevNextIconConverter x:Key="PaginationPrevNextIconConverter" />
+    <paginationConverters:PaginationPrevNextNumberConverter x:Key="PaginationPrevNextNumberConverter" />
+    <paginationConverters:PaginationIsCurrentConverter x:Key="PaginationIsCurrentConverter" />
+    <converters:BoolToReverseVisibilityConverter x:Key="BoolToReverseVisibilityConverter" />
 
     <!-- Focus Border -->
     <Style x:Key="FocusVisual">
@@ -108,55 +115,67 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0 10"/>
         <Setter Property="Height" Value="35"/>
+        <Setter Property="Margin" Value="5 0"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border x:Name="Border" Background="{StaticResource WhiteBrush}" Padding="10 0 0 0">
+                    <Border x:Name="Border" 
+                            Background="{StaticResource ThemeColor2Brush}"
+                            BorderThickness="0"
+                            BorderBrush="{StaticResource ThemeColor3Brush}"
+                            CornerRadius="15"
+                            Margin="{TemplateBinding Margin}"
+                            Padding="0 0 20 0">
                         <Grid>
                             <Grid.Effect>
                                 <DropShadowEffect BlurRadius="10" Color="#000" 
                                                   Opacity=".05" ShadowDepth="5" Direction="0"/>
                             </Grid.Effect>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+
+                            <!-- Clickable Background -->
+                            <Border Grid.ColumnSpan="2" 
+                                    Background="{StaticResource WhiteBrush}"
+                                    Opacity=".000001" />
 
                             <Path x:Name="Icon"
                                   Height="18" Width="18"
                                   Stretch="Uniform" Opacity=".7" 
-                                  Fill="{StaticResource GreyBrush}"
+                                  Fill="{StaticResource BlueGrey500Brush}"
                                   Data="{TemplateBinding Tag}" 
                                   SnapsToDevicePixels="True"/>
 
-                            <Border x:Name="TextBorder" Grid.Column="1" Height="25">
-                                <TextBlock x:Name="TextContent" Text="{TemplateBinding Content}"
-                                           Foreground="{StaticResource GreyBrush}"
-                                           TextAlignment="Left"
-                                           VerticalAlignment="Center"
-                                           FontWeight="SemiBold" FontSize="14"/>
-                            </Border>
+                            <TextBlock x:Name="TextContent" Grid.Column="1"
+                                       Text="{TemplateBinding Content}"
+                                       Foreground="{StaticResource BlueGrey400Brush}"
+                                       TextAlignment="Left"
+                                       VerticalAlignment="Center"
+                                       FontWeight="SemiBold" FontSize="14"/>
 
-                            <Border x:Name="LineBorder" BorderBrush="{StaticResource LightGreyBrush}" 
+                            <Border x:Name="LineBorder" BorderBrush="{StaticResource ThemeColor4Brush}" 
                                     HorizontalAlignment="Left" BorderThickness="0 0 0 1" 
                                     Grid.Column="1" Height="25" Width="0"/>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="BorderThickness" TargetName="Border" Value="1"/>
                             <!-- In -->
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <!-- Text Foreground -->
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).Color" Storyboard.TargetName="TextContent">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#121122"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource BlueGrey300}"/>
                                         </ColorAnimationUsingKeyFrames>
                                         <!-- Icon Fill -->
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).Color" Storyboard.TargetName="Icon">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#5e7ef5"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource ThemeColor5}"/>
                                         </ColorAnimationUsingKeyFrames>
                                         <!-- Line Border -->
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Width)" Storyboard.TargetName="LineBorder">
@@ -172,16 +191,100 @@
                                     <Storyboard>
                                         <!-- Text Foreground -->
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).Color" Storyboard.TargetName="TextContent">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#c3c2ca"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource BlueGrey400}"/>
                                         </ColorAnimationUsingKeyFrames>
                                         <!-- Icon Fill -->
                                         <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Path.Fill).Color" Storyboard.TargetName="Icon">
-                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="#c3c2ca"/>
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource BlueGrey500}"/>
                                         </ColorAnimationUsingKeyFrames>
                                         <!-- Line Border -->
                                         <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.Width)" Storyboard.TargetName="LineBorder">
                                             <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
                                         </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Pagination Button Style -->
+    <Style x:Key="PaginationButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="BorderThickness" Value="0 0 0 2"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="{StaticResource Teal900Brush}"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border Background="{StaticResource WhiteBrush}"
+                                Opacity=".000001"/>
+
+                        <Border Background="{StaticResource Teal900Brush}"
+                                Visibility="{Binding Tag.PageType, 
+                                             RelativeSource={RelativeSource Mode=FindAncestor, 
+                                             AncestorType={x:Type Button}},
+                                             Converter={StaticResource PaginationIsCurrentConverter}}"/>
+
+                        <Border x:Name="Border" 
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}"
+                                Visibility="{Binding Tag.PageType, 
+                                             RelativeSource={RelativeSource Mode=FindAncestor, 
+                                             AncestorType={x:Type Button}},
+                                             Converter={StaticResource PaginationPrevNextNumberConverter}}">
+                            <TextBlock x:Name="Page" 
+                                       Text="{Binding PageNumber}"
+                                       FontWeight="DemiBold"
+                                       Foreground="{StaticResource Teal600Brush}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+
+                        <Path Data="{Binding Tag.PageType, 
+                                     RelativeSource={RelativeSource Mode=FindAncestor, 
+                                     AncestorType={x:Type Button}},
+                                     Converter={StaticResource PaginationPrevNextIconConverter}}"
+                              Fill="{TemplateBinding BorderBrush}"
+                              Height="17" Width="17"
+                              Stretch="Uniform"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Tag.PageNumber}" Value="">
+                            <Setter Property="Visibility" TargetName="Border" Value="Visible"/>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!-- In -->
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- Icon Fill -->
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).Color" Storyboard.TargetName="Page">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.3" Value="{StaticResource Teal300}"/>
+                                        </ColorAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+
+                            <!-- Out -->
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <!-- Icon Fill -->
+                                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).Color" Storyboard.TargetName="Page">
+                                            <EasingColorKeyFrame KeyTime="0:0:0.2" Value="{StaticResource Teal600}"/>
+                                        </ColorAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

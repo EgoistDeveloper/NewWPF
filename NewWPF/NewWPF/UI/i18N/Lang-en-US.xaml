@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!-- File Properties
+    *************************
+        Build Action: Content
+        Copy to Output Directory: Copy if newer
+    ************************* -->
+    
+    <system:String x:Key="TabA">Tab A</system:String>
+    <system:String x:Key="TabB">Tab B</system:String>
+    
+    <system:String x:Key="AvailableLanguages">Available Languages:</system:String>
+    <system:String x:Key="LanguageChangeMessage">Some settings may require you to restart the application..</system:String>
+
+</ResourceDictionary>

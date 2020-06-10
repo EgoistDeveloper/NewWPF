@@ -2,17 +2,12 @@ using GalaSoft.MvvmLight;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using System.Threading;
-using NewWPF.Data;
-using System.Linq;
 using NewWPF.Helpers;
 
 namespace NewWPF.ViewModel
 {
     public class WindowViewModel : ViewModelBase
     {
-        //private readonly IDialogService dialogServiceI;
-
         public WindowViewModel(Window window)
         {
             mWindow = window;
@@ -64,12 +59,7 @@ namespace NewWPF.ViewModel
             };
 
 
-            Title = "Awesome App";
-
-            //Thread.CurrentThread.IsBackground = true;
-
-            //dialogServiceI = dialogService;
-            ShowDiaryWindowCommand = new RelayParameterizedCommand(parameter => ShowDiaryWindow(parameter));
+            Title = "NewWPF";
         }
 
         #region Private Member
@@ -242,14 +232,6 @@ namespace NewWPF.ViewModel
 
         #endregion
 
-
-        public ICommand ShowDiaryWindowCommand { get; }
-
-        public void ShowDiaryWindow(object parameter)
-        {
-
-        }
-
         public string Title { get; set; }
 
         /// <summary>
@@ -319,10 +301,5 @@ namespace NewWPF.ViewModel
                 }));
             }
         }
-
-        //public object DisplayDate
-        //{
-        //    //get { throw new NotImplementedException(); }
-        //}
     }
 }

@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:NewWPF.ViewModel.Base" 
              d1p1:Ignorable="d">
+    
     <Application.Resources>
         <ResourceDictionary>
             <!-- View Model Locator -->
@@ -22,33 +23,45 @@
             <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
             <converters:BoolToReverseVisibilityConverter x:Key="BoolToReverseVisibilityConverter" />
             <converters:EnumToStringConverter x:Key="EnumToStringConverter" />
-
+            <converters:AbbreviatedNumberConverter x:Key="AbbreviatedNumberConverter"/>
+            
             <!-- Resource Dictionaries -->
             <ResourceDictionary.MergedDictionaries>
                 <!-- Colors -->
                 <ResourceDictionary Source="pack://application:,,,/UI/ColorAndIcons/MaterialIcons.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/UI/ColorAndIcons/MaterialColors.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/UI/ColorAndIcons/Colors.xaml" />
-                <!-- DataTemplates -->
 
-                <!-- Context Menu -->
-                <!--<ResourceDictionary Source="pack://application:,,,/UI/Styles/General/ContextMenu.xaml" />-->
+                <!-- i18N -->
+                <ResourceDictionary Source="pack://application:,,,/UI/i18N/Lang-en-US.xaml"/>
 
-
+                <!-- Control Styles -->
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ScrollBarStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ListViewStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ComboBoxStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ContextMenuStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ButtonStyles.xaml" />
-                
+                <ResourceDictionary Source="pack://application:,,,/UI/Styles/TextBoxStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UI/Styles/CheckBoxStyles.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/UI/Styles/TabPanelStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ToggleButtonStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/ToolTipStyles.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/UI/Styles/WindowStyles.xaml" />
 
-
+                <!-- DataTemplates -->
                 <ResourceDictionary Source="pack://application:,,,/UI/DataTemplates/CommonDataTemplates.xaml" />
-
+                
+                <!-- Loader Indicator Dictionaries -->
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingArcs.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingArcsRing.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingDoubleBounce.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingFlipPlane.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingPulse.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingRing.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingThreeDots.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/LoadingIndicators.WPF;component/styles/LoadingWave.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+    
 </Application>

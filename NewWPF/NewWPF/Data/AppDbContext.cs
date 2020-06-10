@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using System.Windows.Media.Imaging;
-using NewWPF.Models.Model;
+using NewWPF.Models.ExampleModel;
 using NewWPF.Helpers;
 using NewWPF.Models.AppSetting;
 
@@ -16,6 +16,15 @@ namespace NewWPF.Data
         {
             //Database.Migrate();
             if (!Database.EnsureCreated()) return;
+
+            // default languge setting
+            AppSettings.Add(new AppSetting
+            {
+                SettingName = "CurrentLang",
+                Value = "en-Us",
+                IsEditable = false,
+                DefaultValue = "en-Us"
+            });
 
             SaveChangesAsync();
         }
@@ -56,6 +65,12 @@ namespace NewWPF.Data
                 entity.Property(x => x.Width)
                     .HasConversion(c => c.ToString(CultureInfo.InvariantCulture),
                         c => Convert.ToDouble(c));
+                entity.Property(x => x.SpendTime)
+                    .HasConversion(c => c.TimeSpanToTimeString(),
+                        c => TimeSpan.Parse(c));
+                entity.Property(x => x.Status)
+                    .HasConversion(c => Convert.ToInt32(c),
+                        c => Convert.ToBoolean(c));
             });
 
             #endregion

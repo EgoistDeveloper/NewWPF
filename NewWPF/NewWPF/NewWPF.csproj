@@ -62,6 +62,9 @@
     <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="LoadingIndicators.WPF, Version=0.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LoadingIndicators.WPF.0.0.1\lib\LoadingIndicators.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="Markdig, Version=0.16.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Markdig.0.16.0\lib\net40\Markdig.dll</HintPath>
     </Reference>
@@ -235,8 +238,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AttachedBehaviors\Helpers\FindVisualChildHelper.cs" />
+    <Compile Include="AttachedBehaviors\ScrollAnimationBehavior.cs" />
+    <Compile Include="AttachedBehaviors\ScrollingToBottomBehavior.cs" />
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Settings.cs" />
+    <Compile Include="Data\Setup.cs" />
     <Compile Include="Dialogs\Base\DialogWindow.cs" />
     <Compile Include="Dialogs\DeleteDialog.xaml.cs">
       <DependentUpon>DeleteDialog.xaml</DependentUpon>
@@ -250,10 +257,10 @@
     <Compile Include="DI\FrameworkConstructionExtensions.cs" />
     <Compile Include="DI\DI.cs" />
     <Compile Include="Helpers\ApplicationPageHelpers.cs" />
+    <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Helpers\ExpressionHelpers.cs" />
     <Compile Include="Helpers\HttpHelpers.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
-    <Compile Include="Helpers\LimitSelectionBehavior.cs" />
     <Compile Include="Helpers\Pagination.cs" />
     <Compile Include="Helpers\PreviousNextMonthDays.cs" />
     <Compile Include="Helpers\StoryboardHelpers.cs" />
@@ -265,15 +272,18 @@
     <Compile Include="Models\Common\AppSettings.cs" />
     <Compile Include="Models\Common\Enums\ApplicationPage.cs" />
     <Compile Include="Models\Common\Enums\MessageDialogType.cs" />
+    <Compile Include="Models\Common\Enums\PageType.cs" />
     <Compile Include="Models\Common\NavbarItem.cs" />
-    <Compile Include="Models\Model\Entities\Example.cs" />
-    <Compile Include="Models\Model\Enums\ExampleType.cs" />
+    <Compile Include="Models\Common\Page.cs" />
+    <Compile Include="Models\ExampleModel\Entities\Example.cs" />
+    <Compile Include="Models\ExampleModel\Enums\ExampleType.cs" />
     <Compile Include="UI\Animations\AnimationSlideInDirection.cs" />
     <Compile Include="UI\Animations\FrameworkElementAnimations.cs" />
     <Compile Include="UI\Animations\PageAnimation.cs" />
     <Compile Include="UI\Controls\Navbar.xaml.cs">
       <DependentUpon>Navbar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UI\Converters\AbbreviatedNumberConverter.cs" />
     <Compile Include="UI\Converters\BaseValueConverter.cs" />
     <Compile Include="UI\Converters\BooleanToBorderThicknessConverter.cs" />
     <Compile Include="UI\Converters\BoolToReverseVisibilityConverter.cs" />
@@ -285,17 +295,29 @@
     <Compile Include="UI\Converters\IntToColorConverter.cs" />
     <Compile Include="UI\Converters\MessageDialogIconConverter.cs" />
     <Compile Include="UI\Converters\MultipleBindingFallbackConverter.cs" />
+    <Compile Include="UI\Converters\MultipleParametersConverter.cs" />
     <Compile Include="UI\Converters\NullToBoolConverter.cs" />
     <Compile Include="UI\Converters\NulltoCollapseConverter.cs" />
     <Compile Include="UI\Converters\NulltoThicknessZero.cs" />
     <Compile Include="UI\Converters\NullToVisibilityConverter.cs" />
+    <Compile Include="UI\Converters\Pagination\PaginationIsCurrentConverter.cs" />
+    <Compile Include="UI\Converters\Pagination\PaginationPrevNextIconConverter.cs" />
+    <Compile Include="UI\Converters\Pagination\PaginationPrevNextNumberConverter.cs" />
     <Compile Include="UI\Converters\PathIsNullConverter.cs" />
     <Compile Include="UI\Converters\ReverseBoolConverter.cs" />
     <Compile Include="UI\Converters\SubstringConverter.cs" />
     <Compile Include="UI\Converters\ThisMonthUnderlineConverter.cs" />
+    <Compile Include="UI\Converters\TimeAgoConverter.cs" />
+    <Compile Include="UI\i18N\i18N.cs" />
+    <Compile Include="UI\Pages\AppSettings.xaml.cs">
+      <DependentUpon>AppSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UI\Pages\Base\BasePage.cs" />
     <Compile Include="UI\Pages\Base\PageHost.xaml.cs">
       <DependentUpon>PageHost.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Pages\ExamplePage.xaml.cs">
+      <DependentUpon>ExamplePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Pages\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -306,12 +328,14 @@
     <Compile Include="ViewModel\App\NavbarViewModel.cs" />
     <Compile Include="ViewModel\App\MessageDialogViewModel.cs" />
     <Compile Include="ViewModel\App\WelcomeViewModel.cs" />
+    <Compile Include="ViewModel\Base\BaseViewModel.cs" />
     <Compile Include="ViewModel\Base\EventArgs.cs" />
     <Compile Include="ViewModel\Base\EventRaiser.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
     <Compile Include="ViewModel\Base\RelayParameterizedCommand.cs" />
     <Compile Include="ViewModel\Base\ViewModelLocator.cs" />
     <Compile Include="ViewModel\Base\WindowViewModel.cs" />
+    <Compile Include="ViewModel\Example\ExampleViewModel.cs" />
     <Page Include="Dialogs\DeleteDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -360,7 +384,29 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\DataTemplates\ExampleDataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Content Include="UI\i18N\Lang-en-US.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="UI\i18N\Lang-tr-TR.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Page Include="UI\Pages\AppSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Pages\Base\PageHost.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Pages\ExamplePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -369,6 +415,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\CheckBoxStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -385,6 +435,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Styles\ScrollBarStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\TabPanelStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Styles\TextBoxStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -419,6 +477,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ChangeLog.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -429,8 +488,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Model\Factory\" />
-    <Folder Include="Models\Model\Interfaces\" />
+    <Folder Include="Models\Common\Json\" />
+    <Folder Include="Models\ExampleModel\Factory\" />
+    <Folder Include="Models\ExampleModel\Interfaces\" />
+    <Folder Include="Resources\" />
+    <Folder Include="UI\Pages\ExamplePages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />

@@ -12,7 +12,7 @@ namespace NewWPF.UI.Pages
             InitializeComponent();
         }
 
-        public WelcomePage(WelcomeViewModel specificViewModel) : base(specificViewModel)
+        public WelcomePage(WelcomeViewModel vm) : base(vm)
         {
             InitializeComponent();
         }

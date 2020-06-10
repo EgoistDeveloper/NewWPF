@@ -22,7 +22,8 @@ namespace NewWPF.Helpers
             {
                 case ApplicationPage.WelcomePage:
                     return new WelcomePage(viewModel as WelcomeViewModel);
-
+                case ApplicationPage.AppSettings:
+                    return new UI.Pages.AppSettings();
                 default:
                     // Debugger.Break();
                     return null;

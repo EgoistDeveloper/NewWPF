@@ -6,6 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="60" d:DesignWidth="800"
              DataContext="{Binding NavbarVM, Source={StaticResource Locator}}">
+    
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
             <Border Background="{StaticResource Grey50Brush}" CornerRadius="15">
@@ -20,11 +21,9 @@
                     </Grid.ColumnDefinitions>
 
                     <ListView Grid.Column="1" 
-                          SelectionMode="Single"
-                          ItemsSource="{Binding LeftSideBarItems}"
-                          ItemTemplate="{StaticResource NavbarItemDataTemplate}"
-                          ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-                </Grid>
+                              ItemsSource="{Binding NavbarItems}"
+                              ItemTemplate="{StaticResource NavbarItemDataTemplate}"/>
+                    </Grid>
             </Border>
         </ControlTemplate>
     </UserControl.Template>

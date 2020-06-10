@@ -2,7 +2,8 @@
 {
     public enum ApplicationPage
     {
-        WelcomePage = 1,
-        Home = 2
+        WelcomePage,
+        AppSettings,
+        Home
     }
 }

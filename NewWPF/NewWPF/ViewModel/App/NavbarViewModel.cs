@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Windows.Controls.Primitives;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Shapes;
 using GalaSoft.MvvmLight;
@@ -12,33 +12,56 @@ namespace NewWPF.ViewModel.App
     {
         public NavbarViewModel()
         {
-            LeftSideBarItems = new List<NavbarItem>()
+            NavbarItems = new ObservableCollection<NavbarItem>()
             {
                 new NavbarItem()
                 {
                     ApplicationPage = ApplicationPage.Home,
-                    IconData = (System.Windows.Application.Current.FindResource("Home") as Path)?.Data,
-                    IsChecked = true
+                    Title = "Home Page",
+                    IconData = (Application.Current.FindResource("Home") as Path)?.Data,
                 }
             };
+
+            SetIsChecked(ViewModelApplication.CurrentPage);
 
             GoToCommand = new RelayParameterizedCommand(GoTo);
         }
 
-        public List<NavbarItem> LeftSideBarItems { get; set; }
+        #region Commands
 
         public ICommand GoToCommand { get; set; }
 
+        #endregion
+
+
+        #region Public Properties
+
+        public ObservableCollection<NavbarItem> NavbarItems { get; set; }
+
+        #endregion
+
+
+        #region Methods
+
         public void GoTo(object sender)
         {
-            if (sender == null || !(sender is ToggleButton toggleButtonbutton)) return;
+            var navbarItem = (NavbarItem)sender;
 
-            if (!(toggleButtonbutton.DataContext is NavbarItem leftSideBarItem)) return;
-
-            if (ViewModelApplication.CurrentPage != leftSideBarItem.ApplicationPage)
+            if (ViewModelApplication.CurrentPage != navbarItem.ApplicationPage)
             {
-                ViewModelApplication.GoToPage(leftSideBarItem.ApplicationPage);
+                SetIsChecked(navbarItem.ApplicationPage);
+                ViewModelApplication.GoToPage(navbarItem.ApplicationPage);
             }
         }
+
+        public void SetIsChecked(ApplicationPage applicationPage)
+        {
+            foreach (var item in NavbarItems)
+            {
+                item.IsChecked = applicationPage == item.ApplicationPage ? true : false;
+            }
+        }
+
+        #endregion
     }
 }

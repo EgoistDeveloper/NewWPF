@@ -8,6 +8,7 @@ using NewWPF.Data;
 using NewWPF.Dialogs;
 using NewWPF.ViewModel;
 using static NewWPF.DI.DI;
+using System.Diagnostics;
 
 namespace NewWPF
 {
@@ -26,6 +27,7 @@ namespace NewWPF
             base.OnStartup(e);
 
             _ = new AppDbContext();
+            _ = new Setup();
 
             ApplicationSetup();
 
@@ -49,6 +51,8 @@ namespace NewWPF
             var dialog = new MessageDialog();
             //dialog.ShowDialogWindow(new MessageDialogViewModel(dialog, "Error: Application_DispatcherUnhandledException", args.Exception.ToString()));
 
+            Debug.WriteLine(args.Exception.ToString(), "Error: Application_DispatcherUnhandledException");
+
             args.Handled = true;
         }
 
@@ -56,12 +60,16 @@ namespace NewWPF
         {
             var dialog = new MessageDialog();
             //dialog.ShowDialogWindow(new MessageDialogViewModel(dialog, "Error: TaskSchedulerOnUnobservedTaskException", args.Exception.ToString()));
+
+            Debug.WriteLine(args.Exception.ToString(), "Error: TaskSchedulerOnUnobservedTaskException");
         }
 
         private void CurrentOnDispatcherUnhandledException(DispatcherUnhandledExceptionEventArgs args)
         {
             var dialog = new MessageDialog();
             //dialog.ShowDialogWindow(new MessageDialogViewModel(dialog, "Error: CurrentOnDispatcherUnhandledException", args.Exception.ToString()));
+
+            Debug.WriteLine(args.Exception.ToString(), "Error: CurrentOnDispatcherUnhandledException");
 
             args.Handled = true;
         }

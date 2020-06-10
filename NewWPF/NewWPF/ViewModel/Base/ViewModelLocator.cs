@@ -40,6 +40,7 @@ namespace NewWPF.ViewModel.Base
             else
             {
                 SimpleIoc.Default.Register<NavbarViewModel>();
+                SimpleIoc.Default.Register<AppSettingsViewModel>();
             }
         }
 
@@ -64,6 +65,15 @@ namespace NewWPF.ViewModel.Base
                 return ServiceLocator.Current.GetInstance<NavbarViewModel>();
             }
         }
+
+        public AppSettingsViewModel AppSettingsVM
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AppSettingsViewModel>();
+            }
+        }
+
 
         public static void Cleanup()
         {

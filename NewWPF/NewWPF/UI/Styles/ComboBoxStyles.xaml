@@ -321,7 +321,7 @@
                 <ControlTemplate TargetType="ComboBoxItem">
                     <Border Name="Border"  
                             SnapsToDevicePixels="true"
-                            Height="30">
+                            Height="{TemplateBinding Height}">
                         <ContentPresenter VerticalAlignment="Center"
                                           HorizontalAlignment="Center"/>
                     </Border>

@@ -10,9 +10,7 @@ namespace NewWPF.Models.AppSetting
         public long Id { get; set; }
         [Required]
         public string SettingName { get; set; }
-        [Required]
         public string Value { get; set; }
-        [Required]
         public bool IsEditable { get; set; }
         public string DefaultValue { get; set; }
     }

@@ -1,29 +1,32 @@
 ﻿using GalaSoft.MvvmLight;
 using NewWPF.Data;
 using NewWPF.Models.Common;
-using System.ComponentModel;
+using NewWPF.UI.i18N;
+using NewWPF.ViewModel.Base;
+using System.Windows;
 
 namespace NewWPF.ViewModel.App
 {
     /// <summary>
     /// The application state as a view model
     /// </summary>
-    public class ApplicationViewModel : ViewModelBase
+    public class ApplicationViewModel : BaseViewModel
     {
         public ApplicationViewModel()
         {
             using var db = new AppDbContext();
 
             AppSettings = new AppSettings();
+
+            LanguageResourceDictionary = i18N.GetCurrentLanguage();
         }
 
         #region Properties
 
-        public ApplicationPage CurrentPage { get; private set; } = ApplicationPage.WelcomePage;
-
+        public ApplicationPage CurrentPage { get; private set; }
         public ViewModelBase CurrentPageViewModel { get; set; }
-
         public AppSettings AppSettings { get; set; }
+        public ResourceDictionary LanguageResourceDictionary { get; set; }
 
         #endregion
 
@@ -44,13 +47,6 @@ namespace NewWPF.ViewModel.App
 
             if (!different)
                 OnPropertyChanged(nameof(CurrentPage));
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
-
-        public void OnPropertyChanged(string name)
-        {
-            PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         #endregion

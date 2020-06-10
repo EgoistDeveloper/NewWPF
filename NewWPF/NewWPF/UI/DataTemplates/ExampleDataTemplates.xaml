@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:NewWPF.UI.Converters"
+                    xmlns:pages="clr-namespace:NewWPF.UI.Pages">
+
+    <converters:MultipleParametersConverter x:Key="MultipleParametersConverter" />
+
+    <!--#region ContextMenu Examples -->
+
+    <ContextMenu x:Key="AnyItemContextMenu">
+        <MenuItem Header="Main Menu Item"
+                  Command="{Binding PlacementTarget.Tag.AnyCommand, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, 
+                            AncestorType={x:Type ContextMenu}}}" 
+                  CommandParameter="{Binding Path=PlacementTarget.DataContext, RelativeSource={RelativeSource Mode=FindAncestor, 
+                                     AncestorType={x:Type ContextMenu}}}">
+            <MenuItem.Icon>
+                <Path Height="14" Width="14" Stretch="UniformToFill"
+                      Fill="{StaticResource BlueGrey300Brush}"
+                      Data="{Binding Source={StaticResource Plus}, Path=Data}"/>
+            </MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="Main Menu Item 2" 
+                  Command="{Binding PlacementTarget.Tag.AnyCommand, 
+                            RelativeSource={RelativeSource Mode=FindAncestor, 
+                            AncestorType={x:Type ContextMenu}}}">
+            <!-- Multiple Command Parameters -->
+            <MenuItem.CommandParameter>
+                <MultiBinding Converter="{StaticResource MultipleParametersConverter}">
+                    <Binding Path="PlacementTarget.DataContext" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type ContextMenu}}"/>
+                    <Binding Path="Tag" RelativeSource="{RelativeSource Mode=Self}"/>
+                </MultiBinding>
+            </MenuItem.CommandParameter>
+            <MenuItem.Icon>
+                <Path Height="14" Width="14" Stretch="UniformToFill"
+                      Fill="{StaticResource BlueGrey300Brush}"
+                      Data="{Binding Source={StaticResource Plus}, Path=Data}"/>
+            </MenuItem.Icon>
+        </MenuItem>
+    </ContextMenu>
+
+    <DataTemplate x:Key="AnyItemDataTemplate">
+        <TextBlock ContextMenu="{StaticResource AnyItemContextMenu}"
+                   Tag="{Binding DataContext, RelativeSource={RelativeSource AncestorType={x:Type pages:BasePage}}}"/>
+    </DataTemplate>
+
+    <!--#endregion-->
+
+</ResourceDictionary>

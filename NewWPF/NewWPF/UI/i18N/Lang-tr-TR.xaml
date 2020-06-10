@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <system:String x:Key="TabA">Sekme A</system:String>
+    <system:String x:Key="TabB">Sekme B</system:String>
+
+    <system:String x:Key="AvailableLanguages">Mevcut Diller:</system:String>
+    <system:String x:Key="LanguageChangeMessage">Bazı ayarlar uygulamayı yeniden başlatmanızı gerektirebilir.</system:String>
+
+
+</ResourceDictionary>
