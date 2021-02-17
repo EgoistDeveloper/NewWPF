@@ -13,5 +13,6 @@
     
     <system:String x:Key="AvailableLanguages">Available Languages:</system:String>
     <system:String x:Key="LanguageChangeMessage">Some settings may require you to restart the application..</system:String>
+    <system:String x:Key="SplashScreenInfo">Awesome app</system:String>
 
 </ResourceDictionary>

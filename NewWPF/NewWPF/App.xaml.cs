@@ -24,16 +24,23 @@ namespace NewWPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            base.OnStartup(e);
-
             _ = new AppDbContext();
             _ = new Setup();
+
+            var splashScreen = new UI.Controls.SplashScreen();
+            splashScreen.Show();
+
+            base.OnStartup(e);
 
             ApplicationSetup();
 
             ViewModelApplication.GoToPage(ApplicationPage.WelcomePage);
 
             Current.MainWindow = new MainWindow();
+            Current.MainWindow.Loaded += (s, e) =>
+            {
+                splashScreen.Close();
+            };
             Current.MainWindow.DataContext = new WindowViewModel(Current.MainWindow);
             Current.MainWindow.Show();
         }

@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace NewWPF.UI.Converters
@@ -28,7 +29,7 @@ namespace NewWPF.UI.Converters
                 };
             }
 
-            return (Application.Current.FindResource(iconName) as Path).Data;
+            return Application.Current.FindResource(iconName) as Geometry;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

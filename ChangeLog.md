@@ -1,4 +1,14 @@
-﻿## 0.0.5
+﻿## 0.0.7
+- Fixed missing color issues
+
+## 0.0.6
+- Added splash screen
+- Added scroll to selected item behavior for listviews
+- Added splash screen info
+- Removed default MaterialIcons resources
+- Removed direct path data usage, replaced with geometry
+
+## 0.0.5
 - Added dynamic global language system
 - Added app settings page
 

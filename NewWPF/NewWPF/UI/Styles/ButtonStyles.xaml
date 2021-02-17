@@ -57,7 +57,7 @@
                     <ControlTemplate.Triggers>
                         <!-- IsDefault -->
                         <Trigger Property="IsDefault" Value="True">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource DarkGreyBrush}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource BlueGrey900Brush}"/>
                             <Setter Property="BorderThickness" TargetName="border" Value="2"/>
                         </Trigger>
                         <!-- IsEnabled:true & IsMouseOver:true -->

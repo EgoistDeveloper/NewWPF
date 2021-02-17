@@ -7,6 +7,6 @@
 
     <system:String x:Key="AvailableLanguages">Mevcut Diller:</system:String>
     <system:String x:Key="LanguageChangeMessage">Bazı ayarlar uygulamayı yeniden başlatmanızı gerektirebilir.</system:String>
-
+    <system:String x:Key="SplashScreenInfo">Harika bi uygulama</system:String>
 
 </ResourceDictionary>

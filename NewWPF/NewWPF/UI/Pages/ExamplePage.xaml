@@ -12,7 +12,7 @@
 
     <TabControl>
         <TabItem Header="{DynamicResource TabA}"
-                 Tag="{Binding Source={StaticResource PlaylistPlay}, Path=Data}">
+                 Tag="{StaticResource PlaylistPlay}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -72,7 +72,7 @@
                             Height="35"
                             Margin="0 0 15 0"
                             Content="Kanal Ekle"
-                            Tag="{Binding Source={StaticResource Plus}, Path=Data}" 
+                            Tag="{StaticResource Plus}" 
                             Style="{StaticResource LeftIconButtonStyle}"
                             Command="{Binding AddTvChannelCommand}"
                             ToolTip="Yeni Bir Kanal Ekle"/>
@@ -82,9 +82,13 @@
                 <ListView x:Name="TvChannels" Grid.Row="1" Grid.ColumnSpan="2" 
                           Margin="0 10 0 0"
                           ItemTemplate="{StaticResource TvChannelItemDataTemplate}" 
-                          ItemsSource="{Binding TvChannels}"
+                          ItemsSource="{Binding ItemsList}"
+                          SelectedItem="{Binding ItemsItem}"
                           VerticalAlignment="Top"
                           ScrollViewer.CanContentScroll="False">
+                    <i:Interaction.Behaviors>
+                        <behaviors:ScrollIntoViewForListViewBehavior/>
+                    </i:Interaction.Behaviors>
                 </ListView>
 
                 <!-- Pagination -->
@@ -116,7 +120,7 @@
             </Grid>
         </TabItem>
         <TabItem Header="{DynamicResource TabB}" 
-                 Tag="{Binding Source={StaticResource PlaylistStar}, Path=Data}">
+                 Tag="{StaticResource PlaylistStar}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

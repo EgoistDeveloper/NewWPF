@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Input;
-using System.Windows.Shapes;
 using GalaSoft.MvvmLight;
 using NewWPF.Models.Common;
 using static NewWPF.DI.DI;
@@ -18,7 +18,7 @@ namespace NewWPF.ViewModel.App
                 {
                     ApplicationPage = ApplicationPage.Home,
                     Title = "Home Page",
-                    IconData = (Application.Current.FindResource("Home") as Path)?.Data,
+                    IconData = Application.Current.FindResource("Home") as Geometry,
                 }
             };
 
@@ -43,6 +43,10 @@ namespace NewWPF.ViewModel.App
 
         #region Methods
 
+        /// <summary>
+        /// Go to app page
+        /// </summary>
+        /// <param name="sender"></param>
         public void GoTo(object sender)
         {
             var navbarItem = (NavbarItem)sender;
@@ -54,6 +58,10 @@ namespace NewWPF.ViewModel.App
             }
         }
 
+        /// <summary>
+        /// Set is checked navbar item
+        /// </summary>
+        /// <param name="applicationPage"></param>
         public void SetIsChecked(ApplicationPage applicationPage)
         {
             foreach (var item in NavbarItems)

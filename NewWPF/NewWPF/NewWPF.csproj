@@ -241,6 +241,7 @@
     <Compile Include="AttachedBehaviors\Helpers\FindVisualChildHelper.cs" />
     <Compile Include="AttachedBehaviors\ScrollAnimationBehavior.cs" />
     <Compile Include="AttachedBehaviors\ScrollingToBottomBehavior.cs" />
+    <Compile Include="AttachedBehaviors\ScrollIntoViewForListViewBehavior.cs" />
     <Compile Include="Data\AppDbContext.cs" />
     <Compile Include="Data\Settings.cs" />
     <Compile Include="Data\Setup.cs" />
@@ -282,6 +283,9 @@
     <Compile Include="UI\Animations\PageAnimation.cs" />
     <Compile Include="UI\Controls\Navbar.xaml.cs">
       <DependentUpon>Navbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Controls\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Converters\AbbreviatedNumberConverter.cs" />
     <Compile Include="UI\Converters\BaseValueConverter.cs" />
@@ -372,11 +376,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\ColorAndIcons\MaterialIcons.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UI\Controls\Navbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Controls\SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -477,7 +481,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ChangeLog.md" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

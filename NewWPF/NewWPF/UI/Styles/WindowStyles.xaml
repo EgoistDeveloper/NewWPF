@@ -60,7 +60,7 @@
                               Stretch="UniformToFill"
                               Height="3" Width="18"
                               Fill="{TemplateBinding Foreground}"
-                              Data="{Binding Source={StaticResource WindowMinimize}, Path=Data}" 
+                              Data="{StaticResource WindowMinimize}" 
                               SnapsToDevicePixels="True"/>
                     </Border>
                 </ControlTemplate>
@@ -143,10 +143,10 @@
                                                 Style="{StaticResource WindowMinimizeButton}"/>
                                         <Button Command="{Binding MaximizeCommand}" 
                                                 Style="{StaticResource WindowControlButton}"
-                                                Tag="{Binding Source={StaticResource WindowMaximize}, Path=Data}"/>
+                                                Tag="{StaticResource WindowMaximize}"/>
                                         <Button Command="{Binding CloseCommand}" 
                                                 Style="{StaticResource WindowCloseButton}"
-                                                Tag="{Binding Source={StaticResource WindowClose}, Path=Data}"/>
+                                                Tag="{StaticResource WindowClose}"/>
                                     </StackPanel>
                                 </Grid>
 
@@ -235,10 +235,10 @@
                                                 Style="{StaticResource WindowMinimizeButton}"/>
                                         <Button Command="{Binding MaximizeCommand}" 
                                                 Style="{StaticResource WindowControlButton}"
-                                                Tag="{Binding Source={StaticResource WindowMaximize}, Path=Data}"/>
+                                                Tag="{StaticResource WindowMaximize}"/>
                                         <Button Command="{Binding CloseCommand}" 
                                                 Style="{StaticResource WindowCloseButton}"
-                                                Tag="{Binding Source={StaticResource WindowClose}, Path=Data}"/>
+                                                Tag="{StaticResource WindowClose}"/>
                                     </StackPanel>
                                 </Grid>
 
@@ -334,10 +334,10 @@
                                                 Style="{StaticResource WindowMinimizeButton}"/>
                                         <Button Command="{Binding MaximizeCommand}" 
                                                 Style="{StaticResource WindowControlButton}"
-                                                Tag="{Binding Source={StaticResource WindowMaximize}, Path=Data}"/>
+                                                Tag="{StaticResource WindowMaximize}"/>
                                         <Button Command="{Binding CloseCommand}" 
                                                 Style="{StaticResource WindowCloseButton}"
-                                                Tag="{Binding Source={StaticResource WindowClose}, Path=Data}"/>
+                                                Tag="{StaticResource WindowClose}"/>
                                     </StackPanel>
                                 </Grid>
 

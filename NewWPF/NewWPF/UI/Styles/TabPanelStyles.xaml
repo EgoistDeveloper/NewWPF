@@ -11,8 +11,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="BorderBrush" Value="{StaticResource DarkGreyBrush}"/>
-        <Setter Property="Foreground" Value="{DynamicResource DarkGreyBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BlueGrey900Brush}"/>
+        <Setter Property="Foreground" Value="{DynamicResource BlueGrey900Brush}"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="0 0 0 5"/>
@@ -99,7 +99,7 @@
 
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-        <Setter Property="Foreground" Value="{StaticResource DarkGreyBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource BlueGrey900Brush}"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="{StaticResource LightBlueBrush2}"/>
         <Setter Property="Margin" Value="10 0"/>
@@ -144,7 +144,7 @@
                     <ControlTemplate.Triggers>
                         <!--#region Icon Checks-->
 
-                        <DataTrigger Binding="{Binding ElementName=Icon, Path=Data}" Value="{x:Null}">
+                        <DataTrigger Binding="{Binding ElementName=Icon}" Value="{x:Null}">
                             <Setter TargetName="Icon" Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
 

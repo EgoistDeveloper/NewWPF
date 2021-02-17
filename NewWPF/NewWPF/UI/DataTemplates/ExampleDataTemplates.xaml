@@ -17,7 +17,7 @@
             <MenuItem.Icon>
                 <Path Height="14" Width="14" Stretch="UniformToFill"
                       Fill="{StaticResource BlueGrey300Brush}"
-                      Data="{Binding Source={StaticResource Plus}, Path=Data}"/>
+                      Data="{StaticResource Plus}"/>
             </MenuItem.Icon>
         </MenuItem>
         <MenuItem Header="Main Menu Item 2" 
@@ -34,7 +34,7 @@
             <MenuItem.Icon>
                 <Path Height="14" Width="14" Stretch="UniformToFill"
                       Fill="{StaticResource BlueGrey300Brush}"
-                      Data="{Binding Source={StaticResource Plus}, Path=Data}"/>
+                      Data="{StaticResource Plus}"/>
             </MenuItem.Icon>
         </MenuItem>
     </ContextMenu>
